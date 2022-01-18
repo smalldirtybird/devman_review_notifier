@@ -37,7 +37,7 @@ def compose_message_text(title, url, is_negative):
 if __name__ == '__main__':
     logging.basicConfig(
         filename='logs.log',
-        level=logging.DEBUG,
+        level=logging.ERROR,
         format='%(asctime)s - %(levelname)s - %(message)s')
     load_dotenv()
     devman_api_token = os.environ['DEVMAN_API_TOKEN']
