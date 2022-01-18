@@ -15,7 +15,7 @@ def get_devman_reviews(token, timestamp_to_request):
         'timestamp': timestamp_to_request
         }
     response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status
+    response.raise_for_status()
     return response.json()
 
 
