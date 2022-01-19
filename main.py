@@ -25,20 +25,6 @@ def send_telegram_message(token, chat_id, text):
     bot.send_message(chat_id=chat_id, text=text)
 
 
-def compose_message_text(title, url, is_negative):
-    message_template = f'У Вас проверили работу: '
-    if not is_negative:
-        return f"""\
-            {message_template} "{title}".
-            Преподавателю всё понравилось, можно приступать к следующему уроку!
-            """
-    else:
-        return f"""\
-            {message_template} "{title}".
-            К сожалению, в работе нашлись ошибки, подробности по ссылке: {url}
-            """
-
-
 if __name__ == '__main__':
     logging.basicConfig(
         filename='logs.log',
@@ -60,8 +46,19 @@ if __name__ == '__main__':
                 lesson_title = review_details['lesson_title']
                 lesson_url = review_details['lesson_url']
                 review_is_negative = review_details['is_negative']
-                message = compose_message_text(
-                    lesson_title, lesson_url, review_is_negative)
+                message_template = f'У Вас проверили работу: '
+                if not review_is_negative:
+                    message = f"""\
+                            {message_template} "{lesson_title}".
+                            Преподавателю всё понравилось, можно приступать
+                            к следующему уроку!
+                            """
+                else:
+                    message = f"""\
+                            {message_template} "{lesson_title}".
+                            К сожалению, в работе нашлись ошибки, подробности
+                            по ссылке: {lesson_url}
+                            """
                 send_telegram_message(
                     telegram_bot_token, telegram_chat_id, dedent(message))
         except (requests.exceptions.ReadTimeout,
