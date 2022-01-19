@@ -40,3 +40,18 @@ Run `main.py` with console. Use `cd` command if you need to change directory:
 D:\>cd D:\learning\python\Chat_bots\devman_review_notifier
 D:\learning\python\Chat_bots\devman_review_notifier>python main.py
 ```
+## Available options
+You can change delay time in case of connection error.
+Get instructions options with `-h` argument:
+```
+D:\learning\python\Chat_bots\devman_review_notifier>python main.py -h
+usage: main.py [-h] [-d DELAY]
+
+Получайте сообщение о проверке задания в Телеграм.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DELAY, --delay DELAY
+                        Время паузы перед отправкой нового запроса в случае отсутствия соединения с сетью.
+
+```

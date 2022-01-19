@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 from textwrap import dedent
@@ -26,7 +27,18 @@ def send_telegram_message(token, chat_id, text):
     bot.send_message(chat_id=chat_id, text=text)
 
 
+def get_arguments():
+    parser = argparse.ArgumentParser(
+        description='Получайте сообщение о проверке задания в Телеграм.')
+    parser.add_argument(
+        '-d', '--delay', default=60,
+        help='Время паузы перед отправкой нового запроса в случае отсутствия соединения с сетью.')
+    args = parser.parse_args()
+    return args.delay
+
+
 if __name__ == '__main__':
+    delay = get_arguments()
     logging.basicConfig(
         filename='logs.log',
         level=logging.ERROR,
@@ -67,4 +79,4 @@ if __name__ == '__main__':
         except requests.exceptions.ConnectionError as c_error:
             logging.exception(c_error)
             print(c_error)
-            sleep(60)
+            sleep(delay)
