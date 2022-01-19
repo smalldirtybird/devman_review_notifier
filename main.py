@@ -1,5 +1,6 @@
 import logging
 import os
+from textwrap import dedent
 
 import requests
 import telegram
@@ -27,11 +28,15 @@ def send_telegram_message(token, chat_id, text):
 def compose_message_text(title, url, is_negative):
     message_template = f'У Вас проверили работу: '
     if not is_negative:
-        return f'{message_template} "{title}". Преподавателю ' \
-               'всё понравилось, можно приступать к следующему уроку!'
+        return f"""\
+            {message_template} "{title}".
+            Преподавателю всё понравилось, можно приступать к следующему уроку!
+            """
     else:
-        return f'{message_template} "{title}". К сожалению, ' \
-               f'в работе нашлись ошибки, подробности по ссылке: {url}'
+        return f"""\
+            {message_template} "{title}".
+            К сожалению, в работе нашлись ошибки, подробности по ссылке: {url}
+            """
 
 
 if __name__ == '__main__':
@@ -58,7 +63,7 @@ if __name__ == '__main__':
                 message = compose_message_text(
                     lesson_title, lesson_url, review_is_negative)
                 send_telegram_message(
-                    telegram_bot_token, telegram_chat_id, message)
+                    telegram_bot_token, telegram_chat_id, dedent(message))
         except (requests.exceptions.ReadTimeout,
                 requests.exceptions.ConnectionError) as error:
             logging.exception(error)
