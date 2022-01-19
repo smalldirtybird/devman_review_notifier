@@ -1,6 +1,7 @@
 import logging
 import os
 from textwrap import dedent
+from time import sleep
 
 import requests
 import telegram
@@ -61,6 +62,9 @@ if __name__ == '__main__':
                             """
                 send_telegram_message(
                     telegram_bot_token, telegram_chat_id, dedent(message))
-        except (requests.exceptions.ReadTimeout,
-                requests.exceptions.ConnectionError) as error:
+        except requests.exceptions.ReadTimeout as et_error:
             logging.exception(error)
+        except requests.exceptions.ConnectionError as c_error:
+            logging.exception(c_error)
+            print(c_error)
+            sleep(60)
