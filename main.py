@@ -30,9 +30,12 @@ def send_telegram_message(token, chat_id, text):
 def get_arguments():
     parser = argparse.ArgumentParser(
         description='Получайте сообщение о проверке задания в Телеграм.')
-    parser.add_argument(
-        '-d', '--delay', default=60,
-        help='Время паузы перед отправкой нового запроса в случае отсутствия соединения с сетью.')
+    parser.add_argument('-d', '--delay', default=60,
+                        help="""
+                        Время паузы перед отправкой нового запроса
+                        в случае отсутствия соединения с сетью.
+                        """
+                        )
     args = parser.parse_args()
     return args.delay
 
