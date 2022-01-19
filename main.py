@@ -48,9 +48,9 @@ if __name__ == '__main__':
         try:
             review = get_devman_reviews(
                 devman_api_token, last_attempt_timestamp)
-            if 'timestamp_to_request' in review:
+            if review['status'] == 'timeout':
                 last_attempt_timestamp = review['timestamp_to_request']
-            elif review['status'] == 'found':
+            else:
                 review_details = review['new_attempts'][0]
                 lesson_title = review_details['lesson_title']
                 lesson_url = review_details['lesson_url']
