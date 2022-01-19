@@ -43,7 +43,7 @@ if __name__ == '__main__':
     devman_api_token = os.environ['DEVMAN_API_TOKEN']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
-    last_attempt_timestamp = ''
+    last_attempt_timestamp = None
     while True:
         try:
             review = get_devman_reviews(
