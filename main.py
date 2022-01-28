@@ -22,13 +22,13 @@ def get_devman_reviews(token, timestamp_to_request):
     return response.json()
 
 
-def get_arguments():
+def get_delay_argument():
     parser = argparse.ArgumentParser(
         description='Получайте сообщение о проверке задания в Телеграм.')
     parser.add_argument('-d', '--delay', default=60,
                         help="""
                         Время паузы перед отправкой нового запроса
-                        в случае отсутствия соединения с сетью.
+                        в случае отсутствия соединения с сетью в секундах.
                         """
                         )
     args = parser.parse_args()
@@ -36,7 +36,7 @@ def get_arguments():
 
 
 if __name__ == '__main__':
-    delay = get_arguments()
+    delay = get_delay_argument()
     logging.basicConfig(
         filename='logs.log',
         level=logging.ERROR,
