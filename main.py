@@ -22,11 +22,6 @@ def get_devman_reviews(token, timestamp_to_request):
     return response.json()
 
 
-def send_telegram_message(token, chat_id, text):
-    bot = telegram.Bot(token=token)
-    bot.send_message(chat_id=chat_id, text=text)
-
-
 def get_arguments():
     parser = argparse.ArgumentParser(
         description='Получайте сообщение о проверке задания в Телеграм.')
@@ -50,6 +45,7 @@ if __name__ == '__main__':
     devman_api_token = os.environ['DEVMAN_API_TOKEN']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
+    bot = telegram.Bot(token=telegram_bot_token)
     last_attempt_timestamp = None
     while True:
         try:
@@ -75,8 +71,8 @@ if __name__ == '__main__':
                             К сожалению, в работе нашлись ошибки, подробности
                             по ссылке: {lesson_url}
                             """
-                send_telegram_message(
-                    telegram_bot_token, telegram_chat_id, dedent(message))
+                bot.send_message(chat_id=telegram_chat_id,
+                                 text=dedent(message))
         except requests.exceptions.ReadTimeout as et_error:
             logging.exception(error)
         except requests.exceptions.ConnectionError as c_error:
