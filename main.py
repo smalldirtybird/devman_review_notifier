@@ -74,8 +74,7 @@ if __name__ == '__main__':
                 bot.send_message(chat_id=telegram_chat_id,
                                  text=dedent(message))
         except requests.exceptions.ReadTimeout as et_error:
-            logging.exception(error)
+            logging.exception(et_error)
         except requests.exceptions.ConnectionError as c_error:
             logging.exception(c_error)
-            print(c_error)
             sleep(delay)
