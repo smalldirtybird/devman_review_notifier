@@ -47,6 +47,7 @@ if __name__ == '__main__':
     telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
     bot = telegram.Bot(token=telegram_bot_token)
     last_attempt_timestamp = None
+    print('Бот успешно запущен!')
     while True:
         try:
             review = get_devman_reviews(
