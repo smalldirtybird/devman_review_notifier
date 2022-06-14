@@ -40,6 +40,8 @@ Run `main.py` with console. Use `cd` command if you need to change directory:
 D:\>cd D:\learning\python\Chat_bots\devman_review_notifier
 D:\learning\python\Chat_bots\devman_review_notifier>python main.py
 ```
+In case of errors, the bot will send their text in the message.
+
 ## Available options
 You can change delay time in case of connection error.
 Get instructions options with `-h` argument:
