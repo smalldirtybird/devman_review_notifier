@@ -1,6 +1,7 @@
 import argparse
 import logging
 import os
+import traceback
 from textwrap import dedent
 from time import sleep
 
@@ -95,4 +96,6 @@ if __name__ == '__main__':
             logging.exception(c_error)
             sleep(delay)
         except Exception as error:
-            logger.error(f'Бот упал с ошибкой: {error}')
+            logging.exception(error)
+            logger.error('Бот упал с ошибкой:')
+            logger.error(f'{error}\n{traceback.format_exc()}')
