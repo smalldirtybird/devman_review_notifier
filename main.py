@@ -99,4 +99,3 @@ if __name__ == '__main__':
             logging.exception(error)
             logger.error('Бот упал с ошибкой:')
             logger.error(f'{error}\n{traceback.format_exc()}')
-            break
