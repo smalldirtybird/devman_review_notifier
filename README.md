@@ -19,7 +19,7 @@ Receive notification directly to the telegram channel.
     to it instead of value in quotes. Here and further quotes must be removed.
 
   
-4. Create a Telegram bot which will post pictures to your own channel - just send message `/newbot` to [@BotFather](https://telegram.me/BotFather) and follow instructions.
+4. Create a Telegram bot which will send messages to you - just send message `/newbot` to [@BotFather](https://telegram.me/BotFather) and follow instructions.
     After bot will be created, get token from @BotFather and add to .env file:
     ```
     TELEGRAM_BOT_TOKEN ='your_telegram_bot_token'
