@@ -30,9 +30,9 @@ Receive notification directly to the telegram channel.
 5. Get your Telegram id - just send message `/start` to `@userinfobot` and copy value of id from answer.
     Add the string
     ```
-    TELEGRAM_CHAT_ID=@'YourTelegramID'
+    TELEGRAM_CHAT_ID='YourTelegramID'
     ```
-    to .env file (`@` symbol is required).
+    to .env file.
    
 ## How to use:
 Run `main.py` with console. Use `cd` command if you need to change directory:
